@@ -7,7 +7,18 @@ class TreeNode:
             self.value = value
 
     head:Item = None
-
+    
+    def __len__(self):
+        current=self.head
+        def Tree_traversal(Tree):
+            res = []
+            if Tree:
+                res = Tree_traversal(Tree.left)
+                res.append(Tree.value)
+                res = res + Tree_traversal(Tree.right)
+            return res
+        return len(Tree_traversal(current))
+    
     def append_by_Value(self, value):
         item = TreeNode.Item(value)
         if self. head is None:
@@ -25,10 +36,7 @@ class TreeNode:
                 current=current.left
             elif current.value <= value: 
                 current=current.right
-            
-        raise ValueError("Error")
-        
-    
+               
     def remove_by_Vallue(self,value):
         if self.head is None:
             raise NameError("Элементов нет")
